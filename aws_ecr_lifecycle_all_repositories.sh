@@ -1,0 +1,2 @@
+#!/bin/bash
+for repo in $(aws ecr describe-repositories --query "repositories[*].repositoryName" --output text) ; do aws ecr put-lifecycle-policy --repository-name $repo --lifecycle-policy-text "file://last30.json" ; done
